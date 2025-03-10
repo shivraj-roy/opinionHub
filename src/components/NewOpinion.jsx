@@ -1,6 +1,8 @@
-import { useActionState } from "react";
+import { useActionState, use } from "react";
+import { OpinionsContext } from "../context/opinions-context";
 
 export function NewOpinion() {
+   const { addOpinion } = use(OpinionsContext);
    const shareOpinionAction = (prev, formData) => {
       const userName = formData.get("userName");
       const title = formData.get("title");
@@ -20,14 +22,8 @@ export function NewOpinion() {
       if (error.length > 0) {
          return { error, enteredValue: data };
       }
-      // fetch("/api/opinions", {
-      //    method: "POST",
-      //    headers: { "Content-Type": "application/json" },
-      //    body: JSON.stringify(data),
-      // }).then(() => {
-      //    window.location.reload();
-      // });
       console.log(data);
+      addOpinion(data);
       return { error: [] };
    };
    const [formState, formAction] = useActionState(shareOpinionAction, {
