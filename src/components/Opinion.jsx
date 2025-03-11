@@ -1,5 +1,6 @@
 import { use } from "react";
 import { OpinionsContext } from "../context/opinions-context";
+import VoteButton from "./VoteButton";
 
 export function Opinion({ opinion: { id, title, body, userName, votes } }) {
    const { upvoteOpinion, downvoteOpinion } = use(OpinionsContext);
@@ -19,7 +20,7 @@ export function Opinion({ opinion: { id, title, body, userName, votes } }) {
          </header>
          <p>{body}</p>
          <form className="votes">
-            <button formAction={upVoteAction}>
+            <VoteButton formAction={upVoteAction}>
                <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -35,11 +36,11 @@ export function Opinion({ opinion: { id, title, body, userName, votes } }) {
                   <path d="m16 12-4-4-4 4" />
                   <path d="M12 16V8" />
                </svg>
-            </button>
+            </VoteButton>
 
             <span>{votes}</span>
 
-            <button formAction={downVoteAction}>
+            <VoteButton formAction={downVoteAction}>
                <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -55,7 +56,7 @@ export function Opinion({ opinion: { id, title, body, userName, votes } }) {
                   <path d="M12 8v8" />
                   <path d="m8 12 4 4 4-4" />
                </svg>
-            </button>
+            </VoteButton>
          </form>
       </article>
    );
